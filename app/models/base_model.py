@@ -1,12 +1,12 @@
 from datetime import datetime
-from uuid import UUID
+from sqlalchemy.dialects.postgresql import UUID
 
 from sqlalchemy import DateTime, func, update as sqlalchemy_update, select, delete as sqlalchemy_delete
 from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload
 from sqlalchemy.sql import text
 
-from core.config import settings
+from app.config.config import settings
 
 
 class Base(AsyncAttrs, DeclarativeBase):
@@ -32,7 +32,7 @@ class Database:
         self._session = None
 
     def init(self):
-        self._engine = create_async_engine(settings.postgres_async_url)
+        self._engine = create_async_engine(settings.postgres_async_url, echo=True)
         self._session = async_sessionmaker(self._engine, expire_on_commit=False)()
 
     def __getattr__(self, name):
@@ -45,7 +45,9 @@ class Database:
     async def drop_all(self):
         async with self._engine.begin() as engine:
             await engine.run_sync(Base.metadata.drop_all)
-
+    @property
+    def engine(self):
+        return self._engine
 
 db = Database()
 db.init()
@@ -111,5 +113,5 @@ class Model(Base, AbstractClass):
         primary_key=True,
         server_default=text("gen_random_uuid()")
     )
-    updated_at: Mapped[datetime] = mapped_column(DateTime, server_onupdate=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(),server_onupdate=func.now(),nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())

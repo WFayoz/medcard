@@ -1,2 +1,0 @@
-# connect sqlalchemy
-import sqlalchemy

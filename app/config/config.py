@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     POSTGRES_HOST: str = Field(default='localhost')
     POSTGRES_PORT: int = Field(default=5432)
-    POSTGRES_DATABASE: str = Field(default='postgres')
+    POSTGRES_DATABASE: str = Field(default='medcard_db')
     POSTGRES_USER: str = Field(default='postgres')
     POSTGRES_PASSWORD: str = Field(default='1')
 
