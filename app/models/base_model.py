@@ -45,9 +45,11 @@ class Database:
     async def drop_all(self):
         async with self._engine.begin() as engine:
             await engine.run_sync(Base.metadata.drop_all)
+
     @property
     def engine(self):
         return self._engine
+
 
 db = Database()
 db.init()
@@ -113,5 +115,5 @@ class Model(Base, AbstractClass):
         primary_key=True,
         server_default=text("gen_random_uuid()")
     )
-    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(),server_onupdate=func.now(),nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())

@@ -1,4 +1,4 @@
-from pydantic import Field, EmailStr
+from pydantic import Field
 from pydantic_settings import BaseSettings
 
 
@@ -9,15 +9,15 @@ class Settings(BaseSettings):
     POSTGRES_USER: str = Field(default='postgres')
     POSTGRES_PASSWORD: str = Field(default='1')
 
-
-
     @property
     def postgres_sync_url(self):
-        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DATABASE}"
+        return (f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
+                f"{self.POSTGRES_PORT}/{self.POSTGRES_DATABASE}")
 
     @property
     def postgres_async_url(self):
-        return f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DATABASE}"
+        return (f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
+                f"{self.POSTGRES_PORT}/{self.POSTGRES_DATABASE}")
 
     class Config:
         env_file = '.env'
