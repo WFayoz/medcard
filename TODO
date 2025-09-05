@@ -1,0 +1,34 @@
+0) medcard
+1. auth qismi (telegram, phone, via google [oneid])
+2. klinikalarni qoshish (adminkada)
+3. retsep yozish (narxini chiqarib beramiz tahminiy)
+4. pdf shaklida olish
+5. type (patient, doctor, med-owner)
+
+
+project
+1. medcard [fastapi]
+Fayoz +
+Gulrux
+Abdulaziz
+
+fayoz - sqlalchemy + alembic + pydantic settings + structure
+gulrux - adminka qoshish klinika modellari
+abdulaziz - user model, phone ga sms yuborish orqali (code redisda 120seconds saqlanadi)
+
+
+tasks
+1. user modelini yozish (patient, doctor, med-owner).
+2. adminkaga patient, doctor, med-owner larni alohida chiqarish.
+3. adminkada clinics qoshishda med-ownerni belgilash imkoni bolsin.
+4. user model.
+5. OTP service phone ga sms yuborish orqali (code redisda 120seconds saqlanadi).
+6. clinics da parent (branch sifati)
+7. clinics location qoshish adminkada coordinate orqali (junior+)
+
+
+
+
+
+
+
