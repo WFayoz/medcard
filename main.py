@@ -8,7 +8,7 @@ from app.models.base_model import db
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
-    await db.create_all()
+    # await db.create_all()
     print('project ishga tushdi')
     admin.mount_to(app)
 
