@@ -23,5 +23,5 @@ class Clinic(Model):
         back_populates='parent',
         cascade='all, delete, delete-orphan',
     )
-    # medowner_id : Mapped[str] = mapped_column(ForeignKey('user.id'), unique=True)
-    # medowner = relationship('User', foreign_keys=[medowner_id])
+    medowner_id : Mapped[str] = mapped_column(ForeignKey('users.id'), unique=True)
+    medowner = relationship('User', foreign_keys=[medowner_id])
