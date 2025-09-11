@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.admin import admin
-from app.models.base_model import db
 
 
 @asynccontextmanager
