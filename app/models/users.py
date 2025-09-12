@@ -15,5 +15,6 @@ class User(Model):
 
     firstname : Mapped[str] = mapped_column(String(255))
     lastname : Mapped[str] = mapped_column(String(255))
-    phone_number : Mapped[str] = mapped_column(String(255))
+    phone_number : Mapped[str] = mapped_column(String(255)) # TODO unique
     role : Mapped[str] = mapped_column(Enum(Role, name='role'))
+    # TODO M2M doctor <-> clinics
