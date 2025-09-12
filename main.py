@@ -3,7 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app.admin import admin
-from app.models.base_model import db
 
 
 @asynccontextmanager
@@ -17,4 +16,4 @@ async def lifespan(_app: FastAPI):
     print('project toxtadi')
 
 
-app = FastAPI(docs_url='/', root_path='/api', title="MedCard", lifespan=lifespan)
+app = FastAPI(docs_url='/', title="MedCard", lifespan=lifespan)
