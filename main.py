@@ -4,6 +4,7 @@ from fastapi import FastAPI
 
 from app.admin import admin
 from app.models.base_model import db
+from app.routers import router
 
 
 @asynccontextmanager
@@ -19,10 +20,9 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(docs_url='/', title="MedCard", lifespan=lifespan)
 
-
 # TODO router qoshish
 # TODO api/v1/clinics GET (client)
 # TODO api/v1/clinics POST (admin)
-
+app.include_router(router)
 
 # adminka, client web

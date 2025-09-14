@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     POSTGRES_DATABASE: str = Field(default='medcard_db')
     POSTGRES_USER: str = Field(default='postgres')
     POSTGRES_PASSWORD: str = Field(default='1')
+    REDIS_URL: str = Field(default='redis://localhost:6379/1')
 
     @property
     def postgres_sync_url(self):
