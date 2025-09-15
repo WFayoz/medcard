@@ -25,9 +25,7 @@ async def login_view(data: RegisterForm, service: OtpService = Depends(otp_servi
             {'message': 'phone number is already registered'},
             status.HTTP_400_BAD_REQUEST
         )
-    hashed_password = get_password_hash(data.password)
     user_data = data.model_dump(exclude={"confirm_password"})
-    user_data['password'] = hashed_password
 
     service.save_user_before_registration(data.phone_number, user_data)
 
