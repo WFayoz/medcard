@@ -1,6 +1,6 @@
 from typing import Self
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field,  model_validator
 
 from app.utils.security import get_password_hash
 

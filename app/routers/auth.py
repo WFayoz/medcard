@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from fastapi.params import Depends
 from fastapi.responses import ORJSONResponse
+from fastapi.security import OAuth2PasswordBearer
 from starlette import status
 from starlette.responses import JSONResponse
 
@@ -15,6 +16,9 @@ auth_router = APIRouter()
 
 def otp_service():
     return OtpService()
+
+
+
 
 
 @auth_router.post('/register')

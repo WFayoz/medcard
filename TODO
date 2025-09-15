@@ -8,14 +8,12 @@
 
 project
 1. medcard [fastapi]
-Fayoz +
+Fayoz
 Gulrux
-Abdulaziz
+
 
 fayoz - sqlalchemy + alembic + pydantic settings + structure
 gulrux - adminka qoshish klinika modellari
-abdulaziz - user model, phone ga sms yuborish orqali (code redisda 120seconds saqlanadi)
-
 
 tasks
 1. user modelini yozish (patient, doctor, med-owner). ✅
@@ -29,8 +27,7 @@ tasks
 
 
 
-
-task
+latest tasks
 1. fastapi argon2
 2. adminka kirish uchun auth
 3. adminkaga patient, doctor, med-owner larni alohida chiqarish.
