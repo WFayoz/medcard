@@ -10,6 +10,7 @@ class ClinicAdmin(ModelView):
 
     fields = [
         "name",
+        "description",
         "phone",
         "email",
         "website",

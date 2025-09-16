@@ -1,0 +1,22 @@
+{% extends "starlette_admin/display/default.html" %}
+
+{% block value %}
+{% if value %}
+<div id="map" style="height: 400px;"></div>
+<script>
+    var coords = "{{ value }}".split(",");
+    var lat = parseFloat(coords[0]);
+    var lng = parseFloat(coords[1]);
+
+    var map = L.map('map').setView([lat, lng], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([lat, lng]).addTo(map);
+</script>
+{% else %}
+<p>No location provided</p>
+{% endif %}
+{% endblock %}

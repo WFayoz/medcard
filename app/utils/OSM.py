@@ -1,13 +1,15 @@
-from starlette_admin import BaseField
+from typing import Any
+from starlette.requests import Request
+from starlette_admin.fields import BaseField
 
 
 class OSMMapField(BaseField):
-    def __init__(self, name: str = "coordinates", label: str = "Select Location on Map", required: bool = False):
+    def __init__(self, name: str = "coordinates", label: str = "Clinic Location", required: bool = False):
         super().__init__(name=name, label=label, required=required)
         self.form_template = "osm_map.html"
-        self.display_template = None
+        self.display_template = "osm_map_display.html"
 
-    async def parse_form_data(self, request, form_data, action):
+    async def parse_form_data(self, request: Request, form_data, action) -> dict[str, Any]:
         lat = form_data.get("lat")
         lng = form_data.get("lng")
         return {
@@ -15,7 +17,10 @@ class OSMMapField(BaseField):
             "lng": float(lng) if lng else None,
         }
 
-    async def serialize_value(self, request, value, action):
-        if value: #Clinic Object
+    async def serialize_value(self, request: Request, value: Any, action) -> Any:
+        # Detail va list view uchun qiymat
+        if isinstance(value, dict):
+            return value
+        if value:
             return {"lat": getattr(value, "lat", None), "lng": getattr(value, "lng", None)}
         return None

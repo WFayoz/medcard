@@ -7,6 +7,7 @@ from app.models.base_model import Model
 
 class Clinic(Model):
     name: Mapped[str] = mapped_column(String(255))
+    description: Mapped[str] = mapped_column()
     phone: Mapped[str] = mapped_column(String(15))
     email: Mapped[EmailStr] = mapped_column(String(255))
     website: Mapped[str] = mapped_column(String(510), nullable=True)

@@ -13,7 +13,8 @@ class User(Model):
         MED_OWNER = 'MED_OWNER'
         DOCTOR = 'DOCTOR'
 
-    firstname : Mapped[str] = mapped_column(String(255))
-    lastname : Mapped[str] = mapped_column(String(255))
-    phone_number : Mapped[str] = mapped_column(String(255))
-    role : Mapped[str] = mapped_column(Enum(Role, name='role'))
+    firstname: Mapped[str] = mapped_column(String(255))
+    lastname: Mapped[str] = mapped_column(String(255))
+    phone_number: Mapped[str] = mapped_column(String(255))
+    password: Mapped[str] = mapped_column(String(255))
+    role: Mapped[str] = mapped_column(Enum(Role, name='role'))
