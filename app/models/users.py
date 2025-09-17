@@ -16,6 +16,7 @@ class User(Model):
     lastname: Mapped[str] = mapped_column(String(255))
     phone_number: Mapped[str] = mapped_column(String(255))  # TODO unique
     role: Mapped[str] = mapped_column(Enum(Role, name='role'), default=Role.PATIENT)
+    # TODO specialist
     # email: Mapped[EmailStr] = mapped_column(String(150), nullable=True, unique=True)
     password: Mapped[str] = mapped_column(String(500), nullable=True)
 
