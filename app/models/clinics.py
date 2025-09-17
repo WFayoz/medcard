@@ -10,7 +10,7 @@ class Clinic(Model):
     description: Mapped[str] = mapped_column()
     phone: Mapped[str] = mapped_column(String(15))
     email: Mapped[EmailStr] = mapped_column(String(255))
-    website: Mapped[str] = mapped_column(String(510), nullable=True)
+    website: Mapped[str] = mapped_column(String(510), nullable=True) # TODO validator https://botir.uz
     lat: Mapped[float] = mapped_column(Float)
     lng: Mapped[float] = mapped_column(Float)
     parent_id: Mapped[str] = mapped_column(ForeignKey('clinics.id', ondelete='CASCADE'), nullable=True)

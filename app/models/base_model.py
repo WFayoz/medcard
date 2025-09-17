@@ -32,7 +32,7 @@ class Database:
         self._session = None
 
     def init(self):
-        self._engine = create_async_engine(settings.postgres_async_url, echo=True)
+        self._engine = create_async_engine(settings.postgres_async_url)
         self._session = async_sessionmaker(self._engine, expire_on_commit=False)()
 
     def __getattr__(self, name):
