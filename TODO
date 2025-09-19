@@ -30,9 +30,9 @@ tasks
 latest tasks
 1. fastapi argon2 (hashing algorithm)
 2. adminka kirish uchun auth
-3. adminkaga patient, doctor, med-owner larni alohida chiqarish.
+3. adminkaga patient, doctor, med-owner larni alohida chiqarish. ✅
 4. adminkada clinics qoshishda med-ownerni belgilash imkoni bolsin.
-5. clinics location qoshish adminkada coordinate orqali (junior+)
+5. clinics location qoshish adminkada coordinate orqali (junior+) ✅
 6. api/v1/clinics filter, search, pagination bolsin
 7. https://jowilf.github.io/starlette-admin/ (i18n)
 

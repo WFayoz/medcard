@@ -9,3 +9,5 @@ down-migrate:
 
 current-mig:
 	alembic current
+flake8:
+	flake8

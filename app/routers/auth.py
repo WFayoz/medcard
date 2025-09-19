@@ -18,9 +18,6 @@ def otp_service():
     return OtpService()
 
 
-
-
-
 @auth_router.post('/register')
 async def login_view(data: RegisterForm, service: OtpService = Depends(otp_service)):
     user = await User.get_by_phone(data.phone_number)

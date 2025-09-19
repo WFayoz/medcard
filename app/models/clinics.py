@@ -7,7 +7,7 @@ from app.models.base_model import Model
 
 class Clinic(Model):
     name: Mapped[str] = mapped_column(String(255))
-    # TODO description
+    description: Mapped[str] = mapped_column()
     phone: Mapped[str] = mapped_column(String(15))
     email: Mapped[EmailStr] = mapped_column(String(255))
     website: Mapped[str] = mapped_column(String(510), nullable=True) # TODO validator https://botir.uz
@@ -24,5 +24,5 @@ class Clinic(Model):
         back_populates='parent',
         cascade='all, delete, delete-orphan',
     )
-    medowner_id : Mapped[str] = mapped_column(ForeignKey('users.id'), unique=True)
+    medowner_id : Mapped[str] = mapped_column(ForeignKey('users.id'), unique=True, nullable=True)
     medowner = relationship('User', foreign_keys=[medowner_id])

@@ -10,25 +10,66 @@
             crossorigin="">
     </script>
     <style>
-        #map { height: 300px; margin-bottom: 10px; }
+        #map {
+            height: 300px;
+            margin-bottom: 10px;
+        }
+        .coord-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .coord-inputs label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .coord-inputs input {
+            width: 100%;
+            padding: 6px;
+        }
     </style>
 </head>
 <body>
+
+<div class="coord-inputs">
+    <div>
+        <label for="lat">Lat *</label>
+        <input type="number" id="lat" name="lat"
+               step="any"
+               value="{{ clinic.lat if clinic else '' }}"
+               required>
+    </div>
+    <div>
+        <label for="lng">Lng *</label>
+        <input type="number" id="lng" name="lng"
+               step="any"
+               value="{{ clinic.lng if clinic else '' }}"
+               required>
+    </div>
+</div>
+
+<label>Clinic Location</label>
 <div id="map"></div>
 
-<input type="hidden" id="lat" name="lat">
-<input type="hidden" id="lng" name="lng">
-
 <script>
-    var map = L.map('map').setView([41.3111, 69.2797], 13); // Tashkent default
+    // Default coordinates (Tashkent markazi)
+    let defaultLat = parseFloat(document.getElementById('lat').value) || 41.3111;
+    let defaultLng = parseFloat(document.getElementById('lng').value) || 69.2797;
 
+    // Xarita yaratish
+    var map = L.map('map').setView([defaultLat, defaultLng], 13);
+
+    // OSM tile layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    let marker;
+    // Boshlang‘ich marker
+    let marker = L.marker([defaultLat, defaultLng]).addTo(map);
 
+    // Xarita ustiga bosilganda marker va inputlarni yangilash
     map.on('click', function(e) {
         const lat = e.latlng.lat;
         const lng = e.latlng.lng;
