@@ -25,16 +25,19 @@ class UsernameAndPasswordProvider(AuthProvider):
                 {"username": "Ensure phone_number has at least 9 characters"}
             )
 
-        async with async_session_maker() as session:
-            result = await session.execute(
-                select(User).where(User.phone_number == phone_number)
-            )
-            user = result.scalar_one_or_none()
+        user = await User.get_by_phone(phone_number)
+        # TODO fix
+        # async with async_session_maker() as session:
+        #     result = await session.execute(
+        #         select(User).where(User.phone_number == phone_number)
+        #     )
+        #     user = result.scalar_one_or_none()
 
         if not user:
             raise LoginFailed("Invalid phone_number or password")
 
-        if user.role != User.Role.ADMIN:
+        if not user.is_admin:
+            # if user.role != User.Role.ADMIN:
             raise LoginFailed("You are not allowed to access admin panel")
 
         if not password == user.password:

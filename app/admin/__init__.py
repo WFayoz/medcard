@@ -10,7 +10,7 @@ admin = Admin(
     engine=db.engine,
     title="MedCard Administration",
     templates_dir="templates",
-    # auth_provider=  UsernameAndPasswordProvider()
+    auth_provider=UsernameAndPasswordProvider()
 )
 
 admin.add_view(ClinicAdmin(Clinic))
