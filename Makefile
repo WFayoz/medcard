@@ -9,5 +9,9 @@ down-migrate:
 
 current-mig:
 	alembic current
+
 flake8:
 	flake8
+
+createsuperuser:
+	python3 app/utils/create_superuser.py

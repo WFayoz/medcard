@@ -6,6 +6,8 @@ from app.utils.OSM import OSMMapField
 
 class ClinicAdmin(ModelView):
     model = Clinic
+    identity = 'clinics'
+    label = 'Clinics'
     exclude_fields_from_create = ["id", "created_at", "updated_at", "branches"]
     exclude_fields_from_edit = ["id", "created_at", "updated_at", "branches"]
     exclude_fields_from_detail = ['coordinates']

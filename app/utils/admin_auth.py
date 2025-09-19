@@ -7,7 +7,7 @@ from starlette_admin.exceptions import FormValidationError, LoginFailed
 from app.models import User
 from app.models.base_model import async_session_maker
 
-
+# templates_dir: Templates dir for customisation
 class UsernameAndPasswordProvider(AuthProvider):
 
     async def login(
@@ -40,7 +40,7 @@ class UsernameAndPasswordProvider(AuthProvider):
             # if user.role != User.Role.ADMIN:
             raise LoginFailed("You are not allowed to access admin panel")
 
-        if not password == user.password:
+        if not user.check_password(password):
             raise LoginFailed("Invalid phone_number or password")
 
         request.session.update({"phone_number": phone_number})

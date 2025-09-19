@@ -23,14 +23,13 @@ async def create_superuser():
             phone_number=phone_number,
             firstname="superuser",
             lastname="superuser",
-            password=password,
-            # password_hash=bcrypt.hash(password),
-            role="ADMIN"
+            password=User.get_password_hash(password),
+            role=User.Role.ADMIN.name
         )
         session.add(user)
         await session.commit()
         print("✅ Superuser created!")
 
-
-if __name__ == "__main__":
-    asyncio.run(create_superuser())
+#
+# if __name__ == "__main__":
+#     asyncio.run(create_superuser())

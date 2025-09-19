@@ -1,5 +1,6 @@
+from starlette.requests import Request
 from starlette_admin.contrib.sqla import ModelView
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union, Dict, Sequence
 from sqlalchemy.orm import Session
 from app.models import User
 
@@ -84,11 +85,14 @@ class MedOwnerAdmin(RoleFilteredAdmin):
     exclude_fields_from_edit = ["id", "created_at", "updated_at", "role", "specialty"]
 
 
-class AdminPanel(RoleFilteredAdmin):
+class AdminPanel(ModelView):
     identity = "admins"
     label = "Admins"
-    model = User
-    role_name = User.Role.ADMIN
-    exclude_fields_from_list = ["id", "created_at", "updated_at", "role", "specialty", "password"]
-    exclude_fields_from_create = ["id", "created_at", "updated_at", "role", "specialty"]
-    exclude_fields_from_edit = ["id", "created_at", "updated_at", "role", "specialty"]
+    # model = User
+    # role_name = User.Role.ADMIN
+    exclude_fields_from_list = ["id", "created_at", "updated_at", "specialty", "password"]
+    exclude_fields_from_create = ["id", "created_at", "updated_at", "specialty"]
+    exclude_fields_from_edit = ["id", "created_at", "updated_at", "specialty"]
+
+    def get_list_query(self, request: Request):
+        return super().get_list_query(request).where(User.role == User.Role.ADMIN)

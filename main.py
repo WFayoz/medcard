@@ -6,11 +6,13 @@ from starlette.middleware.sessions import SessionMiddleware
 from app.admin import admin
 from app.models.base_model import db
 from app.routers import router
+from app.utils.superuser import create_superuser
 
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     await db.create_all()
+    # await create_superuser()
     print('project ishga tushdi')
     admin.mount_to(app)
 

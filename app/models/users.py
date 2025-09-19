@@ -1,8 +1,12 @@
 import enum
 
+from passlib.context import CryptContext
 from sqlalchemy import String, Enum, select
 from sqlalchemy.orm import Mapped, mapped_column
+
 from app.models.base_model import Model, db
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 class User(Model):
@@ -42,6 +46,7 @@ class User(Model):
     # TODO specialist
     # email: Mapped[EmailStr] = mapped_column(String(150), nullable=True, unique=True)
     password: Mapped[str] = mapped_column(String(500), nullable=True)
+
     # specialty: Mapped[DoctorSpeciality] = mapped_column(Enum(DoctorSpeciality, name="doctorspeciality"),
     #                                                     nullable=True)
 
@@ -54,3 +59,10 @@ class User(Model):
     @property
     def is_admin(self):
         return self.role == User.Role.ADMIN
+
+    def check_password(self, password: str) -> bool:
+        return pwd_context.verify(password, self.password)
+
+    @staticmethod
+    def get_password_hash(password: str) -> str:
+        return pwd_context.hash(password)
