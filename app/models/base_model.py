@@ -2,8 +2,8 @@ from datetime import datetime
 from sqlalchemy.dialects.postgresql import UUID
 
 from sqlalchemy import DateTime, func, update as sqlalchemy_update, select, delete as sqlalchemy_delete
-from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, async_sessionmaker
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload
+from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload, sessionmaker
 from sqlalchemy.sql import text
 
 from app.config.config import settings
@@ -117,3 +117,8 @@ class Model(Base, AbstractClass):
     )
     updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
+async_session_maker = sessionmaker(
+    db.engine, class_=AsyncSession, expire_on_commit=False
+)

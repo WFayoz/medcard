@@ -1,16 +1,13 @@
-from typing import Sequence
-
-from starlette.requests import Request
-from starlette_admin import RequestAction, BaseField
 from starlette_admin.contrib.sqla import ModelView
+
 from app.models import Clinic
 from app.utils.OSM import OSMMapField
 
 
 class ClinicAdmin(ModelView):
     model = Clinic
-    exclude_fields_from_create = ["id", "created_at", "updated_at", "branches", "lat", "lng"]
-    exclude_fields_from_edit = ["id", "created_at", "updated_at", "branches", "lat", "lng"]
+    exclude_fields_from_create = ["id", "created_at", "updated_at", "branches"]
+    exclude_fields_from_edit = ["id", "created_at", "updated_at", "branches"]
     exclude_fields_from_detail = ['coordinates']
     fields = [
         "name",
@@ -20,7 +17,7 @@ class ClinicAdmin(ModelView):
         "website",
         "parent",
         "medowner",
-        OSMMapField("coordinates", label="Select Location on Map")
+        OSMMapField("coordinates", label="Clinic Coordinates"),
     ]
 
     async def before_create(self, request, data, obj):

@@ -10,15 +10,17 @@ class OSMMapField(BaseField):
         self.display_template = "osm_map_display.html"
 
     async def parse_form_data(self, request: Request, form_data, action) -> dict[str, Any]:
-        lat = form_data.get("lat")
-        lng = form_data.get("lng")
+        # FormData object orqali olamiz
+        print("FORM DATA:", form_data)
+        print("REQUEST FORM:", await request.form())
+        lat = form_data.get("lat") if form_data else None
+        lng = form_data.get("lng") if form_data else None
         return {
             "lat": float(lat) if lat else None,
             "lng": float(lng) if lng else None,
         }
 
     async def serialize_value(self, request: Request, value: Any, action) -> Any:
-        # Detail va list view uchun qiymat
         if isinstance(value, dict):
             return value
         if value:
