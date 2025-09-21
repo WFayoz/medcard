@@ -11,7 +11,7 @@ from app.config.config import settings
 from app.models import User
 from jose import jwt, exceptions
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 http_bearer = HTTPBearer()
 
