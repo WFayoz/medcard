@@ -11,7 +11,7 @@ from app.services.otp_services import OtpService
 from app.utils.security import get_password_hash, verify_password, create_access_token
 from app.utils.utils import generate_code
 
-auth_router = APIRouter()
+auth_router = APIRouter(tags=['auth'])
 
 
 def otp_service():

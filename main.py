@@ -28,6 +28,6 @@ app.add_middleware(SessionMiddleware, secret_key="supersecretkey")
 # TODO router qoshish
 # TODO api/v1/clinics GET (client)
 # TODO api/v1/clinics POST (admin)
-app.include_router(router)
+app.include_router(router,prefix="/api/v1")
 
 # adminka, client web
