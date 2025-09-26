@@ -14,7 +14,7 @@ Gulrux
 
 
 latest tasks
-1. fastapi argon2 (hashing algorithm)
+1. fastapi argon2 (hashing algorithm) ✅
 2. adminka kirish uchun auth ✅
 3. adminkaga patient, doctor, med-owner larni alohida chiqarish. ✅
 4. adminkada clinics qoshishda med-ownerni belgilash imkoni bolsin.
@@ -22,5 +22,12 @@ latest tasks
 6. api/v1/clinics filter, search, pagination bolsin
 7. https://jowilf.github.io/starlette-admin/ (i18n)
 8. faker bilan data qoshish
+
+
+10. api/v1/clinics list
+11. recipe ni modelini yozish
+12. pdf shabloni
+13. api/v1/recipe POST (doctor lar uchun) [user_id, clinic_id, recipe, diagnose]
+14. api/v1/my-diagnose (patient ni history ni korish)
 
 
