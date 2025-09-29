@@ -1,12 +1,10 @@
 from datetime import datetime
-from sqlalchemy.dialects.postgresql import UUID
 
 from sqlalchemy import DateTime, func, update as sqlalchemy_update, select, delete as sqlalchemy_delete
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import AsyncAttrs, create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, declared_attr, selectinload, sessionmaker
 from sqlalchemy.sql import text
-from typing import List, Tuple
-
 
 from app.config.config import settings
 
@@ -110,7 +108,7 @@ class AbstractClass:
         return (await db.execute(query)).scalars().all()
 
     @classmethod
-    async def paginate(cls, page: int, size: int) -> Tuple[List["Model"], int]:
+    async def paginate(cls, page: int, size: int) -> tuple[list["Model"], int]:
         total = (await db.execute(select(func.count()).select_from(cls))).scalar()
         query = select(cls).offset((page - 1) * size).limit(size)
         result = await db.execute(query)

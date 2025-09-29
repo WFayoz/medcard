@@ -24,7 +24,7 @@ latest tasks
 8. faker bilan data qoshish
 
 
-10. api/v1/clinics list done
+10. api/v1/clinics list done +
 11. recipe ni modelini yozish
 12. pdf shabloni
 13. api/v1/recipe POST (doctor lar uchun) [user_id, clinic_id, recipe, diagnose]
